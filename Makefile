@@ -1,15 +1,20 @@
+# 默认的luaclib目录
 LUA_CLIB_PATH ?= luaclib
+# 默认的cservice目录
 CSERVICE_PATH ?= cservice
 SKYNET_DEFINES :=-DNOUSE_JEMALLOC -DFD_SETSIZE=4096
 
 CC = gcc -std=gnu99
 PLAT ?= mingw
 
+# 编译后的文件存放位置
 SKYNET_BUILD_PATH ?= .
 
 # lua
 LUA_STATICLIB := 3rd/lua/liblua.a
+# Lua依赖的库目录
 LUA_LIB ?= $(LUA_STATICLIB)
+# Lua源码库
 LUA_INC ?= 3rd/lua/src
 
 PLATFORM_INC ?= platform
@@ -34,6 +39,7 @@ LUA_CLIB = skynet \
   client \
   bson md5 sproto lpeg $(TLS_MODULE)
 
+# skynet文件
 LUA_CLIB_SKYNET = \
   lua-skynet.c lua-seri.c \
   lua-socket.c \
@@ -52,6 +58,7 @@ LUA_CLIB_SKYNET = \
 
 SKYNET_EXE_SRC = skynet_main.c
 
+# skynet源码文件
 SKYNET_SRC = skynet_handle.c skynet_module.c skynet_mq.c \
   skynet_server.c skynet_start.c skynet_timer.c skynet_error.c \
   skynet_harbor.c skynet_env.c skynet_monitor.c skynet_socket.c socket_server.c \
